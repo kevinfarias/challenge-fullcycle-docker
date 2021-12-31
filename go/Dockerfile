@@ -6,12 +6,10 @@ COPY . .
 
 RUN go build app.go
 
-FROM alpine:latest as run
+FROM busybox:latest as run
 
 WORKDIR /usr/src/app
 
 COPY --from=builder /usr/src/app .
-
-RUN chmod +x ./app
 
 CMD ["./app"]
